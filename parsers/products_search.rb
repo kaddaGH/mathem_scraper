@@ -4,11 +4,10 @@ current_page = page['vars']['page']
 products = data['products']
 
 # if ot's first page , generate pagination
-if current_page == 1 and  scrape_url_nbr_products > products.length
+if current_page == 1 and scrape_url_nbr_products > products.length
   nbr_products_pg1 = products.length
   step_page = 1
-  while step_page*products.length <=  scrape_url_nbr_products
-break 
+  while step_page * products.length <= scrape_url_nbr_products
     pages << {
         page_type: 'products_search',
         method: 'GET',
@@ -16,7 +15,7 @@ break
         vars: {
             'input_type' => page['vars']['input_type'],
             'search_term' => page['vars']['search_term'],
-            'page' => step_page+1,
+            'page' => step_page + 1,
             'nbr_products_pg1' => nbr_products_pg1
         }
     }
