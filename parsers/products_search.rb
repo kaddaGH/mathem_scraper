@@ -11,7 +11,7 @@ if current_page == 1 and scrape_url_nbr_products > products.length
     pages << {
         page_type: 'products_search',
         method: 'GET',
-        url: page['url'].gsub(/page=0/, "page=#{step_page}"),
+        url: page['url'].gsub(/index=0/, "index=#{step_page}"),
         vars: {
             'input_type' => page['vars']['input_type'],
             'search_term' => page['vars']['search_term'],
@@ -24,7 +24,7 @@ if current_page == 1 and scrape_url_nbr_products > products.length
 
 
   end
-elsif current_page == 0 and number_of_pages == 1
+elsif current_page == 1 and products.length <= scrape_url_nbr_products
   nbr_products_pg1 = products.length
 else
   nbr_products_pg1 = page['vars']['nbr_products_pg1']
