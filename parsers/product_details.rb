@@ -12,6 +12,7 @@ price = data['price']
 category = data['category']['name']
 
 description = json_details['info']['PRODUCT_DESCRIPTION'].gsub(/[\n\s]+/, ' ').gsub(/,/, '.') rescue ''
+pack = data['amountInPackage'].to_i>0?data['amountInPackage']:"1"
 
 product_details = {
     # - - - - - - - - - - -
@@ -30,13 +31,13 @@ product_details = {
     PRODUCT_RANK: page['vars']['product_rank'],
     PRODUCT_PAGE: page['vars']['page'],
     PRODUCT_ID: data['id'],
-    PRODUCT_NAME: data['fullName'],
+    PRODUCT_NAME: data['name'],
     EAN: data['gtin'],
     PRODUCT_DESCRIPTION: description,
     PRODUCT_MAIN_IMAGE_URL: data['images']['ORIGINAL'],
     PRODUCT_ITEM_SIZE: data['quantity'],
     PRODUCT_ITEM_SIZE_UOM: data['unit'],
-    PRODUCT_ITEM_QTY_IN_PACK: data['amountInPackage'],
+    PRODUCT_ITEM_QTY_IN_PACK: pack,
     SALES_PRICE: price,
     IS_AVAILABLE: availability,
     PROMOTION_TEXT: promotion,
