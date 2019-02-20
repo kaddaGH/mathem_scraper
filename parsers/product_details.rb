@@ -15,7 +15,7 @@ description = json_details['info']['PRODUCT_DESCRIPTION'].gsub(/[\n\s]+/, ' ').g
 pack = data['amountInPackage'].to_i>0?data['amountInPackage']:"1"
 size =  data['quantity']
 size_uom = data['unit']
-if pack>0
+if pack.to_i>0
 
   regexps = [
       /(\d*[\.,]?\d+)\s?([Ff][Ll]\.?\s?[Oo][Zz])/,
