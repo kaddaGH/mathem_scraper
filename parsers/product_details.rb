@@ -15,6 +15,8 @@ description = json_details['info']['PRODUCT_DESCRIPTION'].gsub(/[\n\s]+/, ' ').g
 pack = data['amountInPackage'].to_i>0?data['amountInPackage']:"1"
 size =  data['quantity']
 size_uom = data['unit']
+rating =  data['rating']['avgRating'] rescue ''
+reviews = data['rating']['votes'] rescue  ''
 if pack.to_i>0
 
   regexps = [
@@ -69,8 +71,8 @@ product_details = {
     SALES_PRICE: price,
     IS_AVAILABLE: availability,
     PROMOTION_TEXT: promotion,
-    PRODUCT_STAR_RATING: data['rating']['avgRating'],
-    PRODUCT_NBR_OF_REVIEWS: data['rating']['votes'],
+    PRODUCT_STAR_RATING: rating,
+    PRODUCT_NBR_OF_REVIEWS: reviews,
     EXTRACTED_ON: Time.now.to_s
 }
 
